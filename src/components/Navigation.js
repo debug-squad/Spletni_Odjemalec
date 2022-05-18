@@ -38,16 +38,9 @@ export default function Navigation({ changeTheme, isDarkTheme }) {
 			<MyLink to="/home">Home</MyLink>
 			<MyLink to="/map">Map</MyLink>
 			<MyLink to="/graph">Graph</MyLink>
-			{/*<MyLink to='/login'>Login</MyLink> */}
-			<AdminPanelSettingsIcon sx={{ fontSize: "2.5em" }} />
 			<Box sx={{ position: "absolute", right: "8em", display: "flex" }}>
-				<Button onClick={changeTheme}>
-					{!isDarkTheme ? (
-						<DarkModeIcon sx={{ fontSize: "2.5em" }} />
-					) : (
-						<LightModeIcon sx={{ fontSize: "2.5em" }} />
-					)}
-				</Button>
+			{/*<MyLink to='/login'>Login</MyLink> */}
+			<AdminPanelSettingsIcon sx={{ fontSize: "2.5em" }} />		
 			</Box>
 		</NavigationBar>
 	);

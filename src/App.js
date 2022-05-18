@@ -5,6 +5,7 @@ import { lightTheme, darkTheme } from "./theme/Theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navigation from "./components/Navigation";
+import Settings from "./components/Settings";
 
 function App() {
 	//Sets dark theme from localstorage, if not found creates default White theme
@@ -35,7 +36,8 @@ function App() {
 		<ThemeProvider theme={isDarkTheme ? lightTheme : darkTheme}>
 			<CssBaseline />
 			<BrowserRouter>
-				<Navigation changeTheme={changeTheme} isDarkTheme={isDarkTheme} />
+      <Settings changeTheme={changeTheme} isDarkTheme={isDarkTheme}/>
+				<Navigation />
 				<Routes>
 					<Route to="/" exact element={<Home />}></Route>
 					<Route to="/home" exact element={<Home />}></Route>
