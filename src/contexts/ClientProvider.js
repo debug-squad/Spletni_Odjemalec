@@ -1,10 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 export const ClientContext = createContext({
     token: null,
-    setToken: (token) => {},
-
     client: null,
+    setToken: (token) => {},
     setClient: (client) => {}
 });
 export const useClientState = () => useContext(ClientContext);
@@ -15,16 +14,15 @@ export function ClientProvider({children}){
 
     const value = {
         token,
+        client,
         setToken: (token) => {
             localStorage.setItem("token", JSON.stringify(token));
-            setToken(token)
+            setToken(token);
         },
-
-        client,
         setClient: (client) => {
             localStorage.setItem("client", JSON.stringify(client));
             setClient(client)
-        },
+        }
     };
 
     return (

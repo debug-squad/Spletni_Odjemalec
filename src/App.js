@@ -11,6 +11,7 @@ import {ClientProvider} from './contexts/ClientProvider';
 import {EventProvider} from './contexts/EventProvider';
 import {InfrastructureProvider} from './contexts/InfrastructureProvider';
 import {AxiosProvider} from './contexts/AxiosProvider';
+import Login from "./pages/Login";
 
 function App() {
 	//Sets dark theme from localstorage, if not found creates default White theme
@@ -38,25 +39,26 @@ function App() {
 	}, []);
 
 	return (
-		<ClientProvider>
-			<AxiosProvider>
-				<EventProvider>
-					<InfrastructureProvider>
-						<ThemeProvider theme={isDarkTheme ? lightTheme : darkTheme}>
-							<CssBaseline />
-							<BrowserRouter>
+		<BrowserRouter>
+			<ClientProvider>
+				<AxiosProvider>
+					<EventProvider>
+						<InfrastructureProvider>
+							<ThemeProvider theme={isDarkTheme ? lightTheme : darkTheme}>
+								<CssBaseline />
 								<Settings changeTheme={changeTheme} isDarkTheme={isDarkTheme}/>
 								<Navigation />
 								<Routes>
-									<Route to="/" exact element={<Home />}></Route>
-									<Route to="/home" exact element={<Home />}></Route>
+									<Route path="/" exact element={<Home />}></Route>
+									<Route path="/login" exact element={<Login />}></Route>
+									<Route path="/home" exact element={<Home />}></Route>
 								</Routes>
-							</BrowserRouter>
-						</ThemeProvider>
-					</InfrastructureProvider>
-				</EventProvider>
-			</AxiosProvider>
-		</ClientProvider>
+							</ThemeProvider>
+						</InfrastructureProvider>
+					</EventProvider>
+				</AxiosProvider>
+			</ClientProvider>
+		</BrowserRouter>
 	);
 }
 

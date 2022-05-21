@@ -1,4 +1,4 @@
-import React, {createContext, useContext} from 'react';
+import React, {createContext, useContext, useEffect} from 'react';
 import axios from 'axios';
 import { useClientState } from './ClientProvider';
 
@@ -9,13 +9,13 @@ export const AxiosContext = createContext({
 export const useAxiosState = () => useContext(AxiosContext);
 
 export const AxiosProvider = ({children}) => {
-  const { token } = useClientState();
+  const { token, setClient } = useClientState();
 
   const authAxios = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? "https://mb-hub.herokuapp.com/" : 'http://localhost:3000/',
+    baseURL: process.env.REACT_APP_ENV === 'production' ? "https://mb-hub.herokuapp.com/" : 'http://localhost:3000/',
   });
   const publicAxios = axios.create({
-    baseURL: process.env.NODE_ENV === 'production' ? "https://mb-hub.herokuapp.com/" : 'http://localhost:3000/',
+    baseURL: process.env.REACT_APP_ENV === 'production' ? "https://mb-hub.herokuapp.com/" : 'http://localhost:3000/',
   });
 
   authAxios.interceptors.request.use(
@@ -30,6 +30,15 @@ export const AxiosProvider = ({children}) => {
       return Promise.reject(error);
     },
   );
+
+  useEffect(()=> {
+    (async ()=> {
+      if(!token) return;
+      const response = await authAxios.get('/client/profile');
+      const client = response.data;
+      setClient(client);
+    })();
+  }, [token]);
 
   return (
     <AxiosContext.Provider
