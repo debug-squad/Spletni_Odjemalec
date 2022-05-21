@@ -2,15 +2,14 @@ import { styled, useTheme } from "@mui/system";
 import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import Button from "@mui/material/Button";
+import { useClientState } from "../contexts/ClientProvider";
+import Logout from "../pages/Logout";
 
 export default function Navigation({ changeTheme, isDarkTheme }) {
 	
-    const theme = useTheme();
+	const theme = useTheme();
+	const {token,client,setToken,setClient} = useClientState()   
 
-	//Theme from /theme
 	const NavigationBar = styled(Box)(({ theme }) => ({
 		padding: "0",
 		position: "static",
@@ -38,8 +37,8 @@ export default function Navigation({ changeTheme, isDarkTheme }) {
 			<MyLink to="/home">Home</MyLink>
 			<MyLink to="/map">Map</MyLink>
 			<MyLink to="/graph">Graph</MyLink>
+			{!client ? <MyLink to="/login">Login</MyLink> : <Logout />}
 			<Box sx={{ position: "absolute", right: "8em", display: "flex" }}>
-			{/*<MyLink to='/login'>Login</MyLink> */}
 			<AdminPanelSettingsIcon sx={{ fontSize: "2.5em" }} />		
 			</Box>
 		</NavigationBar>
