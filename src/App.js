@@ -12,6 +12,9 @@ import {EventProvider} from './contexts/EventProvider';
 import {InfrastructureProvider} from './contexts/InfrastructureProvider';
 import {AxiosProvider} from './contexts/AxiosProvider';
 import Login from "./pages/Login";
+import MapView from "./pages/MapView";
+import EventView from "./pages/EventView";
+import InfrastructureView from "./pages/InfrastructureView";
 
 function App() {
 	//Sets dark theme from localstorage, if not found creates default White theme
@@ -52,6 +55,10 @@ function App() {
 									<Route path="/" exact element={<Home />}></Route>
 									<Route path="/login" exact element={<Login />}></Route>
 									<Route path="/home" exact element={<Home />}></Route>
+									<Route path="/map" exact element={<MapView />}></Route>
+
+									<Route path="/event/:id" exact element={<EventView />}></Route>
+									<Route path="/infrastructure/:id" exact element={<InfrastructureView />}></Route>
 								</Routes>
 							</ThemeProvider>
 						</InfrastructureProvider>
