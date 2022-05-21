@@ -1,16 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
-/*
-if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  // development URL
-  axios.defaults.baseURL = `${process.env.REACT_APP_API_SERVER_DEVELOPMENT}`;
-} else {
-  // production URL
-  axios.defaults.baseURL = `${process.env.REACT_APP_API_SERVER_PRODUCTION}`;
-}
-*/
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
