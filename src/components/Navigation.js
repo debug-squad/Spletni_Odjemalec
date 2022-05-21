@@ -5,7 +5,7 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { useClientState } from "../contexts/ClientProvider";
 import Logout from "../pages/Logout";
 
-export default function Navigation({ changeTheme, isDarkTheme }) {
+export default function Navigation() {
 	
 	const theme = useTheme();
 	const {token,client,setToken,setClient} = useClientState()   
@@ -30,6 +30,7 @@ export default function Navigation({ changeTheme, isDarkTheme }) {
 		},
 		textDecoration: "none",
 		color: theme.palette.text.primary,
+		display: "flex"
 	}));
 
 	return (
@@ -38,8 +39,8 @@ export default function Navigation({ changeTheme, isDarkTheme }) {
 			<MyLink to="/map">Map</MyLink>
 			<MyLink to="/graph">Graph</MyLink>
 			{!client ? <MyLink to="/login">Login</MyLink> : <Logout />}
-			<Box sx={{ position: "absolute", right: "8em", display: "flex" }}>
-			<AdminPanelSettingsIcon sx={{ fontSize: "2.5em" }} />		
+			<Box sx={{ position: "absolute", right: "8em"}}>
+			{!client.is_admin && <MyLink to="/admin"><AdminPanelSettingsIcon sx={{ fontSize: "1.5em" }} /></MyLink>  }		
 			</Box>
 		</NavigationBar>
 	);

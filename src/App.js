@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navigation from "./components/Navigation";
 import Settings from "./components/Settings";
-
 import {ClientProvider} from './contexts/ClientProvider';
 import {EventProvider} from './contexts/EventProvider';
 import {InfrastructureProvider} from './contexts/InfrastructureProvider';
@@ -15,6 +14,7 @@ import Login from "./pages/Login";
 import MapView from "./pages/MapView";
 import EventView from "./pages/EventView";
 import InfrastructureView from "./pages/InfrastructureView";
+import Admin from "./pages/Admin";
 
 function App() {
 	//Sets dark theme from localstorage, if not found creates default White theme
@@ -56,7 +56,7 @@ function App() {
 									<Route path="/login" exact element={<Login />}></Route>
 									<Route path="/home" exact element={<Home />}></Route>
 									<Route path="/map" exact element={<MapView />}></Route>
-
+									<Route path="/admin" exact element={<Admin />}></Route>
 									<Route path="/event/:id" exact element={<EventView />}></Route>
 									<Route path="/infrastructure/:id" exact element={<InfrastructureView />}></Route>
 								</Routes>
