@@ -9,7 +9,7 @@ export default function EventConfigs(props) {
 
     useEffect(()=>{
         (async ()=>{
-            const req = await authAxios.get('/config_event');
+            const req = await authAxios.get('/config-event');
             const configs = req.data;
             setConfigs(configs);
         })()

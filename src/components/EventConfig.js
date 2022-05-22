@@ -23,7 +23,7 @@ export default function EventConfig(props) {
 
     const Save = async ()=> {
         setLoading(true);
-        const req = await authAxios.put('/config_event/' + config._id, { interval, CSS_selector: CSSSelector });
+        const req = await authAxios.put('/config-event/' + config._id, { interval, CSS_selector: CSSSelector });
         const data = req.data;
         setConfig(data)
         setLoading(false);
@@ -31,7 +31,7 @@ export default function EventConfig(props) {
 
     const Delete = async ()=> {
         setLoading(true);
-        const req = await authAxios.delete('/config_event/' + config._id);
+        const req = await authAxios.delete('/config-event/' + config._id);
         const data = req.data;
         setConfig(data)
         setLoading(false);

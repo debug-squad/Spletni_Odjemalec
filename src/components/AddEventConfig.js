@@ -22,7 +22,7 @@ export default function AddEventConfig(props) {
 
     const Save = async ()=> {
         setLoading(true);
-        const req = await authAxios.post('/config_event', { interval, CSS_selector: CSSSelector });
+        const req = await authAxios.post('/config-event', { interval, CSS_selector: CSSSelector });
         const data = req.data;
         setLoading(false);
 
