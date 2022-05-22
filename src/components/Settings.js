@@ -9,11 +9,12 @@ export default function Settings({changeTheme,isDarkTheme}){
         alignItems:"center",
         justifyContent:"center", 
         backgroundColor: theme.palette.background.menu, 
-        position:"absolute",
+        position:"fixed",
         right:"1em",
         bottom:"5%", 
         textAlign:"center", 
         borderRadius:"100%", 
+        
         padding:"1.1em",
 		"&:hover": {
             cursor:"pointer",
