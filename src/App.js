@@ -15,6 +15,7 @@ import MapView from "./pages/MapView";
 import EventView from "./pages/EventView";
 import InfrastructureView from "./pages/InfrastructureView";
 import Admin from "./pages/Admin";
+import LocationProvider from "./contexts/LocationProvider";
 
 function App() {
 	//Sets dark theme from localstorage, if not found creates default White theme
@@ -47,20 +48,22 @@ function App() {
 				<AxiosProvider>
 					<EventProvider>
 						<InfrastructureProvider>
-							<ThemeProvider theme={isDarkTheme ? lightTheme : darkTheme}>
-								<CssBaseline />
-								<Settings changeTheme={changeTheme} isDarkTheme={isDarkTheme}/>
-								<Navigation />
-								<Routes>
-									<Route path="/" exact element={<Home />}></Route>
-									<Route path="/login" exact element={<Login />}></Route>
-									<Route path="/home" exact element={<Home />}></Route>
-									<Route path="/map" exact element={<MapView />}></Route>
-									<Route path="/admin" exact element={<Admin />}></Route>
-									<Route path="/event/:id" exact element={<EventView />}></Route>
-									<Route path="/infrastructure/:id" exact element={<InfrastructureView />}></Route>
-								</Routes>
-							</ThemeProvider>
+							<LocationProvider>
+								<ThemeProvider theme={isDarkTheme ? lightTheme : darkTheme}>
+									<CssBaseline />
+									<Settings changeTheme={changeTheme} isDarkTheme={isDarkTheme}/>
+									<Navigation />
+									<Routes>
+										<Route path="/" exact element={<Home />}></Route>
+										<Route path="/login" exact element={<Login />}></Route>
+										<Route path="/home" exact element={<Home />}></Route>
+										<Route path="/map" exact element={<MapView />}></Route>
+										<Route path="/admin" exact element={<Admin />}></Route>
+										<Route path="/event/:id" exact element={<EventView />}></Route>
+										<Route path="/infrastructure/:id" exact element={<InfrastructureView />}></Route>
+									</Routes>
+								</ThemeProvider>
+							</LocationProvider>
 						</InfrastructureProvider>
 					</EventProvider>
 				</AxiosProvider>

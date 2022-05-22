@@ -1,22 +1,30 @@
 import { useClientState } from '../contexts/ClientProvider';
 import { useEventState } from '../contexts/EventProvider';
 import { useInstractureState } from '../contexts/InfrastructureProvider';
-import { MapContainer, TileLayer, useMap, Marker, Popup, GeoJSON } from 'react-leaflet'
+import { MapContainer, TileLayer, useMap, Marker, Popup, GeoJSON, Circle, CircleMarker } from 'react-leaflet'
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Filter from '../components/Filter';
+import LocationProvider, { useLocationState } from '../contexts/LocationProvider';
+import L from 'leaflet';
+
 
 const CITY_CENTER = [46.55372, 15.64767];
 
 export default function MapView(){
-    const {client, token} = useClientState();
     const {events} = useEventState();
     const {infrastructures} = useInstractureState();
 
+    const { radius, position, exists, setPosition } = useLocationState();
+
+    const onDragMe = (e) => setPosition([e.latlng.lat, e.latlng.lng]);
+
     return(
-        <>
+        <div className='map-container'>
+            <Filter />
             <MapContainer
                 center={CITY_CENTER}
-                zoom={12}
+                zoom={13}
                 maxZoom={20}
                 attributionControl={true}
                 zoomControl={true}
@@ -25,13 +33,14 @@ export default function MapView(){
                 dragging={true}
                 animate={true}
                 easeLinearity={0.35}
+                className='map-view'
             >
                 <TileLayer
                     noWrap={true}
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {events.map(event=>
-                    <Marker key={event._id} position={event.location.coordinates} draggable>
+                    <Marker key={event._id} position={event.location.coordinates}>
                         <Popup>
                             <Link to={ '/event/' + event._id }>E:{event.title}</Link>
                         </Popup>
@@ -39,13 +48,23 @@ export default function MapView(){
                 )}
 
                 {infrastructures.map(infra=>
-                    <Marker key={infra._id} position={infra.location.coordinates} draggable>
+                    <Marker key={infra._id} position={infra.location.coordinates}>
                         <Popup>
                             <Link to={ '/infrastructure/' + infra._id }>I:{infra.title}</Link>
                         </Popup>
                     </Marker>
                 )}
-            </MapContainer>
-        </>
+
+                {exists ? <>
+                    <Marker key="you-marker" position={position} draggable eventHandlers={({ drag: onDragMe })}>
+                        <Popup>
+                            {JSON.stringify(position) }
+                        </Popup>
+                    </Marker>
+                    <Circle key="you-rad" center={position} radius={radius}/>
+                </>:null }
+
+                </MapContainer>
+        </div>
     );
 }
