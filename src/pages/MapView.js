@@ -9,6 +9,28 @@ import LocationProvider, { useLocationState } from '../contexts/LocationProvider
 import L from 'leaflet';
 
 
+const userIcon = L.divIcon({
+    className: 'custom-div-icon',
+    html: "<i class='material-icons' style='color:black;'>adjust</i>",
+    iconSize: [30, 42],
+    iconAnchor: [15, 42]
+});
+
+const infrastructureIcon = L.divIcon({
+    className: 'custom-div-icon',
+    html: "<div style='background-color:gray;' class='marker-pin'></div><i style='color:white;' class='material-icons'>store</i>",
+    iconSize: [30, 42],
+    iconAnchor: [15, 42]
+});
+
+const eventIcon = L.divIcon({
+    className: 'custom-div-icon',
+    html: "<div style='background-color:blue;' class='marker-pin'></div><i tyle='color:white;' class='material-icons'>event</i>",
+    iconSize: [30, 42],
+    iconAnchor: [15, 42]
+});
+
+
 const CITY_CENTER = [46.55372, 15.64767];
 
 export default function MapView(){
@@ -40,7 +62,7 @@ export default function MapView(){
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {events.map(event=>
-                    <Marker key={event._id} position={event.location.coordinates}>
+                    <Marker key={event._id} position={event.location.coordinates} icon={eventIcon}>
                         <Popup>
                             <Link to={ '/event/' + event._id }>E:{event.title}</Link>
                         </Popup>
@@ -48,7 +70,7 @@ export default function MapView(){
                 )}
 
                 {infrastructures.map(infra=>
-                    <Marker key={infra._id} position={infra.location.coordinates}>
+                    <Marker key={infra._id} position={infra.location.coordinates} icon={infrastructureIcon}>
                         <Popup>
                             <Link to={ '/infrastructure/' + infra._id }>I:{infra.title}</Link>
                         </Popup>
@@ -56,7 +78,7 @@ export default function MapView(){
                 )}
 
                 {exists ? <>
-                    <Marker key="you-marker" position={position} draggable eventHandlers={({ drag: onDragMe })}>
+                    <Marker key="you-marker" position={position} draggable eventHandlers={({ drag: onDragMe })} icon={userIcon}>
                         <Popup>
                             {JSON.stringify(position) }
                         </Popup>
