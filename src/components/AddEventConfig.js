@@ -12,6 +12,22 @@ export default function AddEventConfig(props) {
 		marginTop: "1em",
 		minHeight: "3em",
 		backgroundColor: theme.palette.background.default,
+        [theme.breakpoints.up("xs")]: {
+            width: "90%",
+            marginLeft: "5%",
+        },
+        [theme.breakpoints.up("sm")]: {
+            width: "70%",
+            marginLeft: "15%",
+        },
+        [theme.breakpoints.up("md")]: {
+            width: "60%",
+            marginLeft: "20%",
+        },
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+        justifyContent:"center"
        
 	}));
 
@@ -34,12 +50,11 @@ export default function AddEventConfig(props) {
         <>
             <ConfigBox>
                 <h3>Add new</h3>
-                <label>Interval</label><br/>
-                <input type="number" value={interval} onChange={e=>setInterval(+e.target.value)} placeholder="Interval seconds"/><br/>
-                <label>CSS Selektor</label><br/>
-                <input type="text" value={CSSSelector} onChange={e=>setCSSSelector(e.target.value)} placeholder="CSS Selector"/><br/>
-                <br/>
-                <Button	variant="contained"	onClick={()=>{Save()}} disabled={loading}>Add</Button>
+                <label>Interval</label>
+                <input type="number" value={interval} onChange={e=>setInterval(+e.target.value)} placeholder="Interval seconds"/>
+                <label>CSS Selektor</label>
+                <input type="text" value={CSSSelector} onChange={e=>setCSSSelector(e.target.value)} placeholder="CSS Selector"/>
+                <Button sx={{marginTop:"1em"}}	variant="contained"	onClick={()=>{Save()}} disabled={loading}>Add</Button>
             </ConfigBox>
         </>
     );
