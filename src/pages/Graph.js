@@ -3,10 +3,7 @@ import { useEventState } from '../contexts/EventProvider';
 export default function Graph(){
     const {events} = useEventState();
     console.log(events)    
-    useEffect(()=>{
 
-    })
-    
     return (
         <>
         <h2>Graph</h2>
