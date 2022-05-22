@@ -20,6 +20,7 @@ export default function Settings({changeTheme,isDarkTheme}){
 			backgroundColor: theme.palette.background.menuDarker,
 			color: "white",
 		},
+        zIndex: 2000,
 	}));
 
     return(

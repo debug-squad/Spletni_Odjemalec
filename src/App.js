@@ -15,8 +15,10 @@ import MapView from "./pages/MapView";
 import EventView from "./pages/EventView";
 import InfrastructureView from "./pages/InfrastructureView";
 import Admin from "./pages/Admin";
+
 import LocationProvider from "./contexts/LocationProvider";
 import Graph from "./pages/Graph";
+import FilterProvider from "./contexts/FilterProvider";
 
 function App() {
 	//Sets dark theme from localstorage, if not found creates default White theme
@@ -49,7 +51,7 @@ function App() {
 				<AxiosProvider>
 					<EventProvider>
 						<InfrastructureProvider>
-							<LocationProvider>
+							<FilterProvider>
 								<ThemeProvider theme={isDarkTheme ? lightTheme : darkTheme}>
 									<CssBaseline />
 									<Settings changeTheme={changeTheme} isDarkTheme={isDarkTheme}/>
@@ -65,7 +67,7 @@ function App() {
 										<Route path="/graph" exact element={<Graph />}></Route>
 									</Routes>
 								</ThemeProvider>
-							</LocationProvider>
+							</FilterProvider>
 						</InfrastructureProvider>
 					</EventProvider>
 				</AxiosProvider>

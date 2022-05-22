@@ -1,15 +1,26 @@
 import { useEffect, useState } from "react";
 import { useEventState } from "../contexts/EventProvider";
 import { useInstractureState } from "../contexts/InfrastructureProvider";
-import { useLocationState } from "../contexts/LocationProvider";
+import { useFilterState } from "../contexts/FilterProvider";
 
 export default function Filter(props) {
     const { setEventParams } = useEventState();
     const { setInfrastructureParams } = useInstractureState();
 
-    const { radius, setRadius, position, setPosition, exists: geoQuery, setExists  } = useLocationState();
+    const { 
+        filter,
+        setFilter,
+        radius, 
+        setRadius, 
+        position, 
+        setPosition, 
+        exists: geoQuery, 
+        setExists: setGeoQuery, 
+        existsAfter: useAfter, 
+        setExistsAfter: setUseAfter, 
+        after, setAfter
+    } = useFilterState();
 
-    const [filter, setFilter] = useState({});
     const [canApply, setCanApply] = useState(false);
 
     const applyFilter = ()=> {
@@ -18,7 +29,10 @@ export default function Filter(props) {
                 lat: position[0],
                 long: position[1],
                 dist: radius
-            }: {})
+            }: {}),
+            ...(useAfter ? {
+                after
+            }: {}),
         });
         setInfrastructureParams({
             ...(geoQuery ? {
@@ -32,20 +46,27 @@ export default function Filter(props) {
                 lat: position[0],
                 long: position[1],
                 dist: radius
-            }: {})
+            }: {}),
+            ...(useAfter ? {
+                after
+            }: {}),
         })
     }
 
     useEffect(()=> {
-        if(!geoQuery && filter.lat !== undefined) return setCanApply(true);
+        if(!geoQuery && filter?.lat !== undefined) return setCanApply(true);
         if(geoQuery
             && (
                 filter?.lat !== position[0]
                     || filter?.long !== position[1]
                     || filter?.dist !== radius
             )) return setCanApply(true);
+        if(!useAfter && filter?.after !== undefined)
+            return setCanApply(true);
+        if(useAfter && filter?.after !== after)
+            return setCanApply(true);
         return setCanApply(false)
-    }, [filter, geoQuery, position, radius]);
+    }, [filter, geoQuery, position, radius, useAfter, after]);
 
 
     const getCurrentLoc = ()=> navigator.geolocation.getCurrentPosition((pos)=>{
@@ -56,7 +77,7 @@ export default function Filter(props) {
 		<div className="filter-panel">
             <div>
                 <label>Geo Query: </label>
-                <input type="checkbox" checked={geoQuery} onChange={e=>setExists(e.target.checked)}/>
+                <input type="checkbox" checked={geoQuery} onChange={e=>setGeoQuery(e.target.checked)}/>
                 {geoQuery ? <div>
                     <label>Latitide: </label><br/>
                     <input type="number" placeholer="Latitide" value={position[0]} onChange={(e) => setPosition([+e.target.value, position[1]])}/>
@@ -71,6 +92,14 @@ export default function Filter(props) {
                     <input type="number" placeholer="Radium in meters" value={radius} onChange={(e) => setRadius(+e.target.value)}/>
                 </div>: null }
                 <hr/>
+
+                <label>After: </label>
+                <input type="checkbox" checked={useAfter} onChange={e=>setUseAfter(e.target.checked)}/>
+                {useAfter ? <div>
+                    <input type="datetime-local" value={after.toISOString().slice(0,16)} onChange={e=>setAfter(new Date(e.target.value))}/>
+                </div>: null }
+                <hr/>
+                
 
                 <button onClick={applyFilter} disabled={!canApply}>Apply</button>
 

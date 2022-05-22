@@ -40,9 +40,23 @@ code {
 }
 
 .map-view {
+  position: relative;
   grid-column: 2 / 5;
 
   height: 100%;
+}
+
+.timeline-overlay {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: calc( 100% - 20px );
+  bottom: 0;
+  z-index: 1000;
+  border-radius: 5px;
+  margin: 10px;
+
+  padding: 10px;
 }
 
 .marker-pin {
