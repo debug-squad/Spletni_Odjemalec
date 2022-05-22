@@ -18,9 +18,9 @@ export default function Graph() {
 		if (event.target.value === "descending") {
 			console.log("descending");
 			value.sort(function (a, b) {
-				if (a.attendace < b.attendace) {
+				if (a.attendace > b.attendace) {
 					return -1;
-				} else if (a.attendace > b.attendace) {
+				} else if (a.attendace < b.attendace) {
 					return 1;
 				} else {
 					return 0;
@@ -32,9 +32,9 @@ export default function Graph() {
 			//ascending
 			console.log("ascending");
 			value.sort(function (a, b) {
-				if (a.attendace > b.attendace) {
+				if (a.attendace < b.attendace) {
 					return -1;
-				} else if (a.attendace < b.attendace) {
+				} else if (a.attendace > b.attendace) {
 					return 1;
 				} else {
 					return 0;
@@ -50,8 +50,8 @@ export default function Graph() {
 			<div className="map-container">
 				<Filter />
 				<div className="map-view">
-					<Box sx={{ minWidth: 120 }}>
-						<FormControl fullWidth color={"primary"}>
+					<Box sx={{ minWidth: 120,margin:"1em" }}>
+						<FormControl fullWidth color={"primary"} sx={{backgroundColor:"green"}}>
 							<InputLabel id="demo-simple-select-label">
 								Sort by attendance
 							</InputLabel>
@@ -61,9 +61,10 @@ export default function Graph() {
 								defaultValue="descending"
 								label="Age"
 								onChange={handleChange}
+                                sx={{backgroundColor:theme.palette.border.primary,color:theme.palette.text.primary}}
 							>
-								<MenuItem value={"descending"}>Descending</MenuItem>
-								<MenuItem value={"ascending"}>Ascending</MenuItem>
+								<MenuItem sx={{color:"black"}}value={"descending"}>Descending</MenuItem>
+								<MenuItem sx={{color:"black"}}value={"ascending"}>Ascending</MenuItem>
 							</Select>
 						</FormControl>
 					</Box>
