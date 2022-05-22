@@ -1,7 +1,7 @@
 import BarChart from "../components/Graph/BarChart";
 import { useEventState } from "../contexts/EventProvider";
 import Filter from "../components/Filter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -11,39 +11,42 @@ import { useTheme } from "@mui/system";
 
 export default function Graph() {
 	const { events } = useEventState();
-    const theme = useTheme()    
-	const [value, setValue] = useState(events);
+    const theme = useTheme()
 
-	const handleChange = (event) => {
-		if (event.target.value === "descending") {
-			console.log("descending");
-			value.sort(function (a, b) {
-				if (a.attendace < b.attendace) {
-					return -1;
-				} else if (a.attendace > b.attendace) {
-					return 1;
-				} else {
-					return 0;
-				}
-			});
-			setValue([...value]);
-			console.log(value);
-		} else {
-			//ascending
-			console.log("ascending");
-			value.sort(function (a, b) {
-				if (a.attendace > b.attendace) {
-					return -1;
-				} else if (a.attendace < b.attendace) {
-					return 1;
-				} else {
-					return 0;
-				}
-			});
-			setValue([...value]);
-			console.log(value);
+	const [data, setData] = useState(events);
+	const [sort, setSort]= useState('descending');
+
+	useEffect(()=> {
+		let new_data = [...events];
+		switch(sort) {
+			case "descending":
+				new_data.sort(function (a, b) {
+					if (a.attendace < b.attendace) {
+						return -1;
+					} else if (a.attendace > b.attendace) {
+						return 1;
+					} else {
+						return 0;
+					}
+				});
+				break;
+			case "ascending":
+				new_data.sort(function (a, b) {
+					if (a.attendace > b.attendace) {
+						return -1;
+					} else if (a.attendace < b.attendace) {
+						return 1;
+					} else {
+						return 0;
+					}
+				});
+				break;
+			default:
 		}
-	};
+
+		setData(new_data);
+
+	}, [events, sort])
 
 	return (
 		<>
@@ -58,16 +61,16 @@ export default function Graph() {
 							<Select
 								labelId="demo-simple-select-label"
 								id="demo-simple-select"
-								defaultValue="descending"
+								defaultValue={sort}
 								label="Age"
-								onChange={handleChange}
+								onChange={e=>setSort(e.target.value)}
 							>
 								<MenuItem value={"descending"}>Descending</MenuItem>
 								<MenuItem value={"ascending"}>Ascending</MenuItem>
 							</Select>
 						</FormControl>
 					</Box>
-					<BarChart data={value} />
+					<BarChart data={data} />
 				</div>
 			</div>
 		</>
