@@ -16,6 +16,7 @@ import EventView from "./pages/EventView";
 import InfrastructureView from "./pages/InfrastructureView";
 import Admin from "./pages/Admin";
 import LocationProvider from "./contexts/LocationProvider";
+import Graph from "./pages/Graph";
 
 function App() {
 	//Sets dark theme from localstorage, if not found creates default White theme
@@ -61,6 +62,7 @@ function App() {
 										<Route path="/admin" exact element={<Admin />}></Route>
 										<Route path="/event/:id" exact element={<EventView />}></Route>
 										<Route path="/infrastructure/:id" exact element={<InfrastructureView />}></Route>
+										<Route path="/graph" exact element={<Graph />}></Route>
 									</Routes>
 								</ThemeProvider>
 							</LocationProvider>
