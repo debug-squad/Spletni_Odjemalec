@@ -16,7 +16,6 @@ import EventView from "./pages/EventView";
 import InfrastructureView from "./pages/InfrastructureView";
 import Admin from "./pages/Admin";
 
-import LocationProvider from "./contexts/LocationProvider";
 import Graph from "./pages/Graph";
 import FilterProvider from "./contexts/FilterProvider";
 
