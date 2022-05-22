@@ -3,12 +3,11 @@ import React from 'react';
 import * as d3 from 'd3';
 import { useNavigate} from 'react-router-dom';
 import { useTheme } from "@mui/system";
-import {useState} from "react"
-function BarChart({ data }) {
+
+function BarChart({data}) {
   const navigate = useNavigate();
     const theme = useTheme();
-    const [value,setValue]= useState(null)
-
+    
   const ref = useD3(
     (svg) => {
       const height = 500;
@@ -79,7 +78,6 @@ function BarChart({ data }) {
           //console.log("estestesteste")
           d3.select(this).transition().duration(50)
           .attr("fill", "green")
-          console.log(i)
        })
        .on('mouseout', function(d,i){
         //console.log("estestesteste")
@@ -93,10 +91,12 @@ function BarChart({ data }) {
    })
 
     },
-    [data.length,theme]
+    [data,theme]
   );
 
   return (
+    <div>
+     
     <svg
 
       ref={ref}
@@ -112,6 +112,7 @@ function BarChart({ data }) {
       <g className="x-axis" />
       <g className="y-axis" />
     </svg>
+    </div>
   );
 }
 
