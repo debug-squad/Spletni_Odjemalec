@@ -42,7 +42,7 @@ export default function MapView(){
 
     return(
         <div className='map-container'>
-            <Filter />
+            <Filter map={true}/>
             <div className='map-view'>
                 
                 <MapContainer

@@ -102,11 +102,11 @@ export default function Filter(props) {
                 </div>: null }
                 <hr/>
 
-                <label>Timeline: </label>
-                <input type="checkbox" checked={existsAtDate} onChange={e=>setExistsAtDate(e.target.checked)}/>
-                <hr/>
-                
-                
+                {props?.map?<>
+                    <label>Timeline: </label>
+                    <input type="checkbox" checked={existsAtDate} onChange={e=>setExistsAtDate(e.target.checked)}/>
+                    <hr/>
+                </>:null}
 
                 <button onClick={applyFilter} disabled={!canApply}>Apply</button>
 
