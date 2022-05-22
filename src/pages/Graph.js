@@ -43,9 +43,7 @@ export default function Graph() {
 				break;
 			default:
 		}
-
 		setData(new_data);
-
 	}, [events, sort])
 
 	return (
@@ -53,8 +51,8 @@ export default function Graph() {
 			<div className="map-container">
 				<Filter />
 				<div className="map-view">
-					<Box sx={{ minWidth: 120 }}>
-						<FormControl fullWidth color={"primary"}>
+					<Box sx={{ minWidth: 120,margin:"1em" }}>
+						<FormControl fullWidth color={"primary"} sx={{backgroundColor:"green"}}>
 							<InputLabel id="demo-simple-select-label">
 								Sort by attendance
 							</InputLabel>
@@ -64,9 +62,10 @@ export default function Graph() {
 								defaultValue={sort}
 								label="Age"
 								onChange={e=>setSort(e.target.value)}
+                                sx={{backgroundColor:theme.palette.border.primary,color:theme.palette.text.primary}}
 							>
-								<MenuItem value={"descending"}>Descending</MenuItem>
-								<MenuItem value={"ascending"}>Ascending</MenuItem>
+								<MenuItem sx={{color:"black"}}value={"descending"}>Descending</MenuItem>
+								<MenuItem sx={{color:"black"}}value={"ascending"}>Ascending</MenuItem>
 							</Select>
 						</FormControl>
 					</Box>
