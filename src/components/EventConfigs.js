@@ -8,8 +8,10 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { styled, useTheme } from "@mui/system";
 
 export default function EventConfigs(props) {
+    const theme = useTheme();
     const { authAxios } = useAxiosState();
     const [configs, setConfigs] = useState([]);
 
@@ -33,8 +35,9 @@ export default function EventConfigs(props) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
+          sx={{backgroundColor:theme.palette.background.menu}}
         >
-          <Typography variant="h4" gutterBottom component="div">
+          <Typography variant="h4" sx={{color:theme.palette.text.primary}} gutterBottom component="div">
           Event Config						</Typography>
         </AccordionSummary>
         <AccordionDetails>

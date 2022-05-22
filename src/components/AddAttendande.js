@@ -95,7 +95,7 @@ export default function AddAttendance() {
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls="panel1bh-content"
 					id="panel1bh-header"
-					sx={{ textAlign: "center" }}
+                    sx={{ textAlign: "center",backgroundColor:theme.palette.background.menu}}
 				>
 					<Typography variant="h4" gutterBottom component="div">
 						Attendance
@@ -109,7 +109,7 @@ export default function AddAttendance() {
 								display: "flex",
 								alignItems: "center",
 								justifyContent: "space-between",
-								marginBottom: "1em",
+								marginTop: "1em",
 								padding: "1em",
 								[theme.breakpoints.up("xs")]: {
 									width: "90%",
