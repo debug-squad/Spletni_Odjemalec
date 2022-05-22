@@ -17,7 +17,13 @@ export const FilterContext = createContext({
     setExistsAfter: (exists) => {},
 
     after: new Date(),
-    setAfter: (after) => {}
+    setAfter: (after) => {},
+
+    existsAtDate: false,
+    setExistsAtDate: (existsAtDate) => {},
+
+    atDate: new Date().toLocaleDateString(),
+    setAtDate: (atDate) => {}
 });
 export const useFilterState = () => useContext(FilterContext);
 
@@ -29,6 +35,9 @@ export function FilterProvider({children}){
 
     const [ existsAfter, setExistsAfter ] = useState(false);
     const [ after, setAfter ] = useState(new Date());
+
+    const [ existsAtDate, setExistsAtDate ] = useState(true);
+    const [ atDate, setAtDate ] = useState(new Date().toDateString());
 
     const [filter, setFilter] = useState({});
 
@@ -57,6 +66,16 @@ export function FilterProvider({children}){
 
         after,
         setAfter: (after) => setAfter(after),
+
+        //
+        //
+        //
+
+        existsAtDate,
+        setExistsAtDate: (existsAtDate) => setExistsAtDate(existsAtDate),
+
+        atDate,
+        setAtDate: (atDate) => setAtDate(atDate),
     };
 
     return (

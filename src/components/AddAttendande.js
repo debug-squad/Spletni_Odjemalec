@@ -4,14 +4,15 @@ import { useEventState } from "../contexts/EventProvider";
 import { useAxiosState } from "../contexts/AxiosProvider";
 import { useTheme } from "@mui/system";
 import Typography from "@mui/material/Typography";
-import Accordion from "@mui/material/Accordion";
-import * as React from "react";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import { useState, useEffect } from "react";
+import Accordion from '@mui/material/Accordion';
+import * as React from 'react';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import { useState,useEffect } from 'react';
+
 export default function AddAttendance() {
 	const theme = useTheme();
 	//const { events } = useEventState();

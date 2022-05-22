@@ -36,7 +36,7 @@ export default function MapView(){
     const {events} = useEventState();
     const {infrastructures} = useInstractureState();
 
-    const { radius, position, exists, setPosition } = useFilterState();
+    const { radius, position, exists, setPosition, existsAtDate, atDate } = useFilterState();
 
     const onDragMe = (e) => setPosition([e.latlng.lat, e.latlng.lng]);
 
@@ -62,12 +62,12 @@ export default function MapView(){
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     {events.map(event=>
-                        <Marker key={event._id} position={event.location.coordinates} icon={eventIcon}>
+                        !existsAtDate || atDate === new Date(event.date_start).toDateString() ? <Marker key={event._id} position={event.location.coordinates} icon={eventIcon}>
                             <Popup>
                                 <Link to={ '/event/' + event._id }><h1>{event.title}</h1></Link>
-                                <img src={event.image_url} height="200px"/>
+                                <img src={event.image_url} height="200px" />
                             </Popup>
-                        </Marker>
+                        </Marker>: null
                     )}
 
                     {infrastructures.map(infra=>
@@ -87,7 +87,8 @@ export default function MapView(){
                         <Circle key="you-rad" center={position} radius={radius}/>
                     </>:null }
                 </MapContainer>
-                <TimeLine />
+                
+                {existsAtDate ? <TimeLine /> : null }
             </div>
         </div>
     );

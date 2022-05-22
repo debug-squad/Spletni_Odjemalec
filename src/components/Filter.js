@@ -18,7 +18,9 @@ export default function Filter(props) {
         setExists: setGeoQuery, 
         existsAfter: useAfter, 
         setExistsAfter: setUseAfter, 
-        after, setAfter
+        after, setAfter,
+        existsAtDate,
+        setExistsAtDate,
     } = useFilterState();
 
     const [canApply, setCanApply] = useState(false);
@@ -99,6 +101,11 @@ export default function Filter(props) {
                     <input type="datetime-local" value={after.toISOString().slice(0,16)} onChange={e=>setAfter(new Date(e.target.value))}/>
                 </div>: null }
                 <hr/>
+
+                <label>Timeline: </label>
+                <input type="checkbox" checked={existsAtDate} onChange={e=>setExistsAtDate(e.target.checked)}/>
+                <hr/>
+                
                 
 
                 <button onClick={applyFilter} disabled={!canApply}>Apply</button>
