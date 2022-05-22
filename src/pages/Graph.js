@@ -19,7 +19,7 @@ export default function Graph() {
 	useEffect(()=> {
 		let new_data = [...events];
 		switch(sort) {
-			case "descending":
+			case "ascending":
 				new_data.sort(function (a, b) {
 					if (a.attendace < b.attendace) {
 						return -1;
@@ -30,7 +30,7 @@ export default function Graph() {
 					}
 				});
 				break;
-			case "ascending":
+			case "descending":
 				new_data.sort(function (a, b) {
 					if (a.attendace > b.attendace) {
 						return -1;
@@ -51,8 +51,8 @@ export default function Graph() {
 			<div className="map-container">
 				<Filter />
 				<div className="map-view">
-					<Box sx={{ minWidth: 120,margin:"1em" }}>
-						<FormControl fullWidth color={"primary"} sx={{backgroundColor:"green"}}>
+					<Box sx={{ minWidth: 120,margin:"1em",}}>
+						<FormControl fullWidth sx={{backgroundColor: theme.palette.border.primary}}>
 							<InputLabel id="demo-simple-select-label">
 								Sort by attendance
 							</InputLabel>
