@@ -8,7 +8,8 @@ const lightTheme = createTheme({
       default: "#e4f0e2",
       onDefault:"#d0d0d0",
       menu:"#64a9de",
-      menuDarker:"#2f82c2"
+      menuDarker:"#2f82c2",
+      chart:"black"
     },
     border:{
       primary:"#ffffff"
@@ -25,7 +26,8 @@ const darkTheme = createTheme({
       default: "#222222",
       onDefault:"#333030",
       menu:"#0d3f66",
-      menuDarker:"#062740"
+      menuDarker:"#062740",
+      chart:"orange"
     },
     border:{
       primary:"#000000"
