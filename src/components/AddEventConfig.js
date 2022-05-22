@@ -11,7 +11,7 @@ export default function AddEventConfig(props) {
 		position: "relative",
 		marginTop: "1em",
 		minHeight: "3em",
-		backgroundColor: theme.palette.background.default,
+		backgroundColor: theme.palette.background.menu,
         [theme.breakpoints.up("xs")]: {
             width: "90%",
             marginLeft: "5%",
