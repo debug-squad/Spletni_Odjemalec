@@ -40,7 +40,7 @@ export default function Navigation() {
 			<MyLink to="/graph">Graph</MyLink>
 			{!client ? <MyLink to="/login">Login</MyLink> : <Logout />}
 			<Box sx={{ position: "absolute", right: "8em"}}>
-			{client.is_admin && <MyLink to="/admin"><AdminPanelSettingsIcon sx={{ fontSize: "1.5em" }} /></MyLink>  }		
+			{client?.is_admin && <MyLink to="/admin"><AdminPanelSettingsIcon sx={{ fontSize: "1.5em" }} /></MyLink>  }		
 			</Box>
 		</NavigationBar>
 	);
