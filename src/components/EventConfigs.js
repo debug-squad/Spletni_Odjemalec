@@ -35,7 +35,7 @@ export default function EventConfigs(props) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
-          sx={{backgroundColor:theme.palette.background.menu}}
+          sx={{backgroundColor:theme.palette.background.onDefault}}
         >
           <Typography variant="h4" sx={{color:theme.palette.text.primary}} gutterBottom component="div">
           Event Config						</Typography>
