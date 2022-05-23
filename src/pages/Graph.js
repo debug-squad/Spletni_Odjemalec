@@ -43,7 +43,7 @@ export default function Graph() {
 				break;
 			default:
 		}
-		setData(new_data);
+		setData(new_data.filter(e=>e.attendace != 0));
 	}, [events, sort])
 
 	return (
