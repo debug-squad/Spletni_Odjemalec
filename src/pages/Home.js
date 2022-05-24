@@ -1,19 +1,21 @@
-import { useClientState } from '../contexts/ClientProvider';
-import { useEventState } from '../contexts/EventProvider';
-import { useInstractureState } from '../contexts/InfrastructureProvider';
+import { useEventState } from "../contexts/EventProvider";
+import { Box } from "@mui/system";
+import Grid from "@mui/material/Grid";
+import EventCard from "../components/EventCard";
+import Typography from "@mui/material/Typography";
 
-export default function Info(){
-    const {client, token} = useClientState();
-    const {events} = useEventState();
-    const {infrastructures} = useInstractureState();
-
-    return(
-        <>
-            <p>Client: { JSON.stringify(client) } </p>
-            <p>Token: { JSON.stringify(token) } </p>
-
-            <p>Events: { JSON.stringify(events) } </p>
-            <p>Infrastructures: { JSON.stringify(infrastructures) } </p>
-        </>
-    );
+export default function Info() {
+	const { events } = useEventState();
+	return (
+        <Box sx={{ maxWidth: "100%", margin:"1em", marginBottom:"2em" }}>
+        <Typography variant="h4" gutterBottom component="div" sx={{textAlign:"center", margin:"1em"}}>All Events</Typography>
+            <Grid sx={{display:"flex",alignItems:"center",justifyContent:"center"}} container rowSpacing={3} columnSpacing={{ xs: 1, sm: 3, md: 4 }}>
+			{events.map((event) => (
+                 <Grid item xs="auto">
+				<EventCard event={event} />
+                </Grid>
+			))}
+            </Grid>
+		</Box>
+	);
 }
