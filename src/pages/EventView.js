@@ -30,10 +30,10 @@ export default function EventView() {
 
     return (event ? <>
         <Box sx={{ display: "flex", maxWidth: "100%", margin: "1em" }}>
-            <Box sx={{  }}>
+            <Box sx={{ minWidth:"50%",display:"flex",alignItems:"center", justifyContent:"center"}}>
                 <img src={event.image_url}></img>
             </Box>
-            <Box sx={{ margin: "1em", display: "flex", flexDirection: "column",alignItems:"center", justifyContent:"center",textAlign:"center" }}>
+            <Box sx={{ width:"100%",margin: "1em", display: "flex", flexDirection: "column",alignItems:"center", justifyContent:"center",textAlign:"center" }}>
                 <Typography  sx={{ margin: "none", fontSize:"2em" }} gutterBottom component="div">
                     {event.title}
                 </Typography>
