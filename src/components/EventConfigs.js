@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAxiosState } from "../contexts/AxiosProvider";
-import AddEventConfig from "./AddEventConfig";
+import AddEventConfig from "./Admin/AddEventConfig";
 import EventConfig from "./EventConfig";
 import * as React from 'react';
 import Accordion from '@mui/material/Accordion';

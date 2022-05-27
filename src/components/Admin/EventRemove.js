@@ -1,7 +1,7 @@
 import { AccordionDetails, Button } from "@mui/material";
 import { Box } from "@mui/system";
-import { useEventState } from "../contexts/EventProvider";
-import { useAxiosState } from "../contexts/AxiosProvider";
+import { useEventState } from "../../contexts/EventProvider";
+import { useAxiosState } from "../../contexts/AxiosProvider";
 import { useTheme } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import Accordion from '@mui/material/Accordion';
@@ -12,13 +12,12 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { useState,useEffect } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function AddAttendance() {
+export default function EventRemove() {
 	const theme = useTheme();
-	//const { events } = useEventState();
 	const { authAxios } = useAxiosState();
 	const [events, setEvents] = useState([]);
-	//	console.log(events);
 
 	useEffect(() => {
 		authAxios
@@ -35,16 +34,13 @@ export default function AddAttendance() {
 
 	const [message, setMessage] = React.useState("");
 
-	const addToAttendance = (event, index) => {
-		console.log(`Add to event ${event._id}`);
+	const deleteEvent = (event, index) => {
+		console.log(`Delete event ${event._id}`);
 		authAxios
-			.post("/attendance/", {
-				event: event._id,
-			})
+			.put("/event/"+event._id)
 			.then(function (response) {
 				console.log(response);
-				setMessage(`Added + 1 to ${event.title}`);
-				events[index].attendace += 1;
+				setMessage(`Deleted event ${event.title}`);
 				setEvents(events);
 			})
 			.catch(function (error) {
@@ -87,7 +83,7 @@ export default function AddAttendance() {
 		</React.Fragment>
 	);
 	return (
-		<Box sx={{ marginBottom: "2em" }}>
+		<Box sx={{ marginTop: "2em" }}>
 			<Accordion
 				expanded={expanded === "panel1"}
 				onChange={handleChange("panel1")}
@@ -99,7 +95,7 @@ export default function AddAttendance() {
                     sx={{ textAlign: "center",backgroundColor:theme.palette.background.menu}}
 				>
 					<Typography variant="h4" gutterBottom component="div">
-						Attendance
+						Remove Events
 					</Typography>
 				</AccordionSummary>
 				<AccordionDetails>
@@ -132,17 +128,18 @@ export default function AddAttendance() {
 								gutterBottom
 								component="div"
 							>
-								{event.title}, number of attendes: {event.attendace}
+								{event.title}
 							</Typography>
-							<Button
-								variant="contained"
-								onClick={() => {
-									addToAttendance(event, index);
-									handleClick();
-								}}
-							>
-								Add +1
-							</Button>
+                            <IconButton aria-label="delete"
+                            onClick={() => {
+                                console.log("deletetetett")
+                              //  addToAttendance(event, index);
+                               // handleClick();
+                               deleteEvent(event,index)
+                            }}
+                            >
+                                <DeleteIcon sx={{color:"red"}}/>
+                            </IconButton>
 						</Box>
 					))}
 				</AccordionDetails>

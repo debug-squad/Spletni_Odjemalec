@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { Navigate } from "react-router-dom";
-import AddAttendance from "../components/AddAttendande";
+import AddAttendance from "../components/Admin/AddAttendande";
+import EventRemove from "../components/Admin/EventRemove";
 import EventConfigs from "../components/EventConfigs";
 import { useClientState } from "../contexts/ClientProvider";
 
@@ -19,7 +20,8 @@ export default function Admin() {
 				Admin panel
 			</Typography>
 			<AddAttendance />
-			<EventConfigs sx={{ marginTop: "2em" }} />
+			<EventConfigs  />
+			<EventRemove  />
 		</>
 	);
 }

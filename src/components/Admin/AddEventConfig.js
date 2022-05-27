@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { styled, useTheme, Box } from "@mui/system";
 import { useEffect, useState } from "react";
-import { useAxiosState } from "../contexts/AxiosProvider";
+import { useAxiosState } from "../../contexts/AxiosProvider";
 
 export default function AddEventConfig(props) {
     const { authAxios } = useAxiosState();

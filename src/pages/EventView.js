@@ -29,7 +29,7 @@ export default function EventView() {
     }, [id]);
 
     return (event ? <>
-        <Box sx={{ display: "flex", maxWidth: "100%", margin: "1em" }}>
+        <Box sx={{ display: "flex", maxWidth: "100%", margin: "1em",marginTop:"2em" }}>
             <Box sx={{ minWidth:"50%",display:"flex",alignItems:"center", justifyContent:"center"}}>
                 <img src={event.image_url}></img>
             </Box>
