@@ -37,11 +37,11 @@ export default function EventRemove() {
 	const deleteEvent = (event, index) => {
 		console.log(`Delete event ${event._id}`);
 		authAxios
-			.put("/event/"+event._id)
+			.delete("/event/"+event._id)
 			.then(function (response) {
 				console.log(response);
 				setMessage(`Deleted event ${event.title}`);
-				setEvents(events);
+                setEvents(events.filter(e=> e._id != event._id));
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -101,6 +101,7 @@ export default function EventRemove() {
 				<AccordionDetails>
 					{events.map((event, index) => (
 						<Box
+                        key={index}
 							sx={{
 								backgroundColor: theme.palette.background.onDefault,
 								display: "flex",

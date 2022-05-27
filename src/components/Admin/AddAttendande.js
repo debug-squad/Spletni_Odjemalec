@@ -15,7 +15,6 @@ import { useState,useEffect } from 'react';
 
 export default function AddAttendance() {
 	const theme = useTheme();
-	//const { events } = useEventState();
 	const { authAxios } = useAxiosState();
 	const [events, setEvents] = useState([]);
 	//	console.log(events);
@@ -105,6 +104,7 @@ export default function AddAttendance() {
 				<AccordionDetails>
 					{events.map((event, index) => (
 						<Box
+						key={index}
 							sx={{
 								backgroundColor: theme.palette.background.onDefault,
 								display: "flex",
