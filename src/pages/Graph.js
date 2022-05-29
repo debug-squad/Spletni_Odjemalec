@@ -8,6 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useTheme } from "@mui/system";
+import PieGraph from "../components/Graph/PieGraph";
 
 export default function Graph() {
 	const { events } = useEventState();
@@ -70,6 +71,10 @@ export default function Graph() {
 						</FormControl>
 					</Box>
 					<BarChart data={data} />
+					<Box>
+					<PieGraph></PieGraph>
+					
+					</Box>
 				</div>
 			</div>
 		</>
