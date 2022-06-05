@@ -6,6 +6,7 @@ import Filter from '../components/Filter';
 import { useFilterState } from '../contexts/FilterProvider';
 import L from 'leaflet';
 import TimeLine from '../components/TimeLine';
+import { useState } from 'react'
 
 
 const userIcon = L.divIcon({
@@ -40,11 +41,12 @@ export default function MapView(){
 
     const onDragMe = (e) => setPosition([e.latlng.lat, e.latlng.lng]);
 
+    const [animate, setAnimate] = useState(true);
+
     return(
         <div className='map-container'>
             <Filter map={true}/>
-            <div className='map-view'>
-                
+            <div className='map-view' onClick={() => setAnimate(false)}>
                 <MapContainer
                     center={CITY_CENTER}
                     zoom={13}
@@ -88,7 +90,7 @@ export default function MapView(){
                     </>:null }
                 </MapContainer>
                 
-                {existsAtDate ? <TimeLine /> : null }
+                {existsAtDate ? <TimeLine animate={animate} setAnimate={setAnimate} /> : null }
             </div>
         </div>
     );

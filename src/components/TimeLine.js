@@ -9,12 +9,10 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useFilterState } from "../contexts/FilterProvider";
 
-export default function TimeLine() {
+export default function TimeLine({ animate, setAnimate }) {
   const { events } = useEventState();
   const { setAtDate, atDate } = useFilterState();
   const theme = useTheme();
-
-  const [animate, setAnimate] = useState(true);
 
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
